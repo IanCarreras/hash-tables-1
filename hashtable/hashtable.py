@@ -22,7 +22,8 @@ class HashTable:
 
     def __init__(self, capacity):
         # Your code here
-
+        self.capacity = capacity
+        self.table = [None] * capacity
 
     def get_num_slots(self):
         """
@@ -35,6 +36,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        return self.capacity
 
 
     def get_load_factor(self):
@@ -44,6 +46,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        return self.capacity * .75
 
 
     def fnv1(self, key):
@@ -54,6 +57,13 @@ class HashTable:
         """
 
         # Your code here
+        string_utf = key.encode()
+        total = 0
+        for char in string_utf:
+            total += char
+            total &= 0xffffffff
+            
+        return total 
 
 
     def djb2(self, key):
@@ -70,8 +80,10 @@ class HashTable:
         Take an arbitrary key and return a valid integer index
         between within the storage capacity of the hash table.
         """
-        #return self.fnv1(key) % self.capacity
-        return self.djb2(key) % self.capacity
+        print(f'key: {key}', self.fnv1(key) % self.capacity)
+        return self.fnv1(key) % self.capacity
+        # return self.djb2(key) % self.capacity
+
 
     def put(self, key, value):
         """
@@ -82,7 +94,11 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        h = self.hash_index(key)
+        if self.table[h] != None:
+            return print(f'collision, overwriting {self.table[h]}')
+        self.table[h] = value
+        print(f'table[{h}]: ', value)
 
     def delete(self, key):
         """
@@ -104,6 +120,10 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        # i = hash_index(key)
+        # return ht[i]
+        h = self.hash_index(key)
+        return self.table[h]
 
 
     def resize(self, new_capacity):
