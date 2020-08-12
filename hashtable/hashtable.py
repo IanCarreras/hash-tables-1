@@ -24,6 +24,7 @@ class HashTable:
         # Your code here
         self.capacity = capacity
         self.table = [None] * capacity
+        self.items = 0
 
     def get_num_slots(self):
         """
@@ -36,7 +37,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.capacity
+        return len(self.table)
 
 
     def get_load_factor(self):
@@ -46,7 +47,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.capacity * .75
+        return self.items / self.get_num_slots()
 
 
     def fnv1(self, key):
@@ -73,6 +74,7 @@ class HashTable:
         Implement this, and/or FNV-1.
         """
         # Your code here
+        return 
 
 
     def hash_index(self, key):
@@ -93,11 +95,30 @@ class HashTable:
 
         Implement this.
         """
+        entry = HashTableEntry(key, value)
         # Your code here
+
         h = self.hash_index(key)
-        if self.table[h] != None:
-            return print(f'collision, overwriting {self.table[h]}')
-        self.table[h] = value
+        # if position is emtpy create head node
+        if self.table[h] is None:
+            self.table[h] = entry
+        # iterate through list at position h
+        # if key exists replace value
+        # else add new entry to head
+        else:
+            cur = self.table[h]
+            exists = False
+            while cur is not None:
+                if key == cur.key:
+                    cur.value = value
+                    exists = True
+                cur = cur.next
+            if exists == False:
+                if cur.next:
+                    while cur.next is not None:
+                        cur = cur.next
+                    cur.next = entry
+                
         print(f'table[{h}]: ', value)
 
     def delete(self, key):
@@ -109,7 +130,12 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        h = self.hash_index(key)
+        # search through list for matching key
+        # if match
+            # delete node
+        # else 
+            # return not found
 
     def get(self, key):
         """
@@ -120,9 +146,13 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        # i = hash_index(key)
-        # return ht[i]
         h = self.hash_index(key)
+        # search through list
+            # compare keys until match
+            # if exists
+                # return value
+            # else 
+                # return none
         return self.table[h]
 
 
@@ -134,6 +164,15 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        # create new array double the current size
+        # iterate through each linked list 
+            # iterate through each item and re-hash
+            # insert into new locations
+        return
+
+    def shrink(self):
+        # reduce size by half
+        return 
 
 
 
