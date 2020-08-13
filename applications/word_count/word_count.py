@@ -1,6 +1,14 @@
 def word_count(s):
-    # Your code here
-
+    # split string into array of words
+    # iterate over array creating a hashtable with word as key and count as value
+    d = {}
+    s = s.split('[":;,.-+=/\|[]{}()*^&]')
+    for w in s:
+        if w not in d:
+            d[w] = 1
+        else:
+            d[w] += 1
+    return s
 
 
 if __name__ == "__main__":

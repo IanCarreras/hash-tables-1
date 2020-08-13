@@ -153,7 +153,7 @@ class HashTable:
                 # return value
             # else 
                 # return none
-        return self.table[h]
+        return self.table[h].value
 
 
     def resize(self, new_capacity):

@@ -2,10 +2,13 @@ def no_dups(s):
     # Your code here
     d = set()
     s = s.split()
+    a = ''
     for w in s:
         if w not in d:
             d.add(w)
-    return d
+            a += w + ' '
+
+    return a[:-1]
 
 if __name__ == "__main__":
     print(no_dups(""))
