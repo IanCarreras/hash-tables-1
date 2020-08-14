@@ -15,11 +15,11 @@ def slowfun(x, y):
     Rewrite slowfun_too_slow() in here so that the program produces the same
     output, but completes quickly instead of taking ages to run.
     """
-    # Your code here
-    lookup_table = {}
-    for i in range(1, 50000):
-        lookup_table[i] = slowfun_too_slow(x, y)
-    return lookup_table
+    # for given ranges 
+    # iterate from lowest to highest 
+    # store results of the calculations in hashtable
+    d = {}
+    
 
 
 # Do not modify below this line!
@@ -27,4 +27,4 @@ def slowfun(x, y):
 for i in range(50000):
     x = random.randrange(2, 14)
     y = random.randrange(3, 6)
-    print(f'{i}: {x},{y}: {slowfun(x, y)}')
+    print(f'{i}: {x},{y}: {slowfun_too(x, y)}')
